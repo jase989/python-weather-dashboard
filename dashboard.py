@@ -14,7 +14,7 @@ ICON_MAP = {
     "13d": "snow",                      "13n": "snow",
     "50d": "mist",                      "50n": "mist",
 }
-ICON_CDN = "https://cdn.jsdelivr.net/gh/basmilius/weather-icons/production/fill/all"
+ICON_CDN = "https://cdn.jsdelivr.net/gh/basmilius/weather-icons@v2.0.0/production/fill/all"
 
 
 def _icon_url(owm_code):
