@@ -2,17 +2,35 @@ from datetime import datetime
 
 OUTPUT_FILE = "dashboard.html"
 
+# Map OpenWeatherMap icon codes to Meteocons (basmilius/weather-icons) names
+ICON_MAP = {
+    "01d": "clear-day",                 "01n": "clear-night",
+    "02d": "partly-cloudy-day",         "02n": "partly-cloudy-night",
+    "03d": "cloudy",                    "03n": "cloudy",
+    "04d": "overcast-day",              "04n": "overcast-night",
+    "09d": "rain",                      "09n": "rain",
+    "10d": "partly-cloudy-day-rain",    "10n": "partly-cloudy-night-rain",
+    "11d": "thunderstorms-rain",        "11n": "thunderstorms-rain",
+    "13d": "snow",                      "13n": "snow",
+    "50d": "mist",                      "50n": "mist",
+}
+ICON_CDN = "https://cdn.jsdelivr.net/gh/basmilius/weather-icons/production/fill/all"
+
+
+def _icon_url(owm_code):
+    name = ICON_MAP.get(owm_code, "clear-day")
+    return f"{ICON_CDN}/{name}.svg"
+
 
 def _forecast_rows(forecast):
     # builds the 5 day columns — one div per day, nothing fancy
     rows = ""
     for day in forecast:
-        icon_url = f"https://openweathermap.org/img/wn/{day['icon']}@2x.png"
         label = datetime.strptime(day["date"], "%Y-%m-%d").strftime("%a %-d %b")
         rows += f"""
             <div class="forecast-day">
                 <div class="fc-label">{label}</div>
-                <img src="{icon_url}" alt="{day['description']}" width="40">
+                <img src="{_icon_url(day['icon'])}" alt="{day['description']}" width="56" height="56">
                 <div class="fc-desc">{day['description']}</div>
                 <div class="fc-temps">
                     <span class="fc-high">{day['max_temp']:.0f}°</span>
@@ -23,8 +41,7 @@ def _forecast_rows(forecast):
 
 
 def build_dashboard(weather, forecast):
-    # OWM hosts their own icons on a CDN, saves us dealing with assets
-    icon_url = f"https://openweathermap.org/img/wn/{weather['icon']}@2x.png"
+    icon_url = _icon_url(weather["icon"])
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -119,7 +136,7 @@ def build_dashboard(weather, forecast):
     <div class="card">
         <h1>{weather['city']}, {weather['country']}</h1>
         <p class="subtitle">{weather['description']}</p>
-        <img src="{icon_url}" alt="{weather['description']}">
+        <img class="main-icon" src="{icon_url}" alt="{weather['description']}" width="120" height="120">
         <div class="temp">{weather['temp']:.1f}°C</div>
         <div class="details">
             <div class="detail">
