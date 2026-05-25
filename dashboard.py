@@ -1,4 +1,5 @@
 from datetime import datetime
+from html import escape as _e
 
 OUTPUT_FILE = "dashboard.html"
 
@@ -27,11 +28,12 @@ def _forecast_rows(forecast):
     rows = ""
     for day in forecast:
         label = datetime.strptime(day["date"], "%Y-%m-%d").strftime("%a %-d %b")
+        desc = _e(day["description"])
         rows += f"""
             <div class="forecast-day">
                 <div class="fc-label">{label}</div>
-                <img src="{_icon_url(day['icon'])}" alt="{day['description']}" width="56" height="56">
-                <div class="fc-desc">{day['description']}</div>
+                <img src="{_icon_url(day['icon'])}" alt="{desc}" width="56" height="56">
+                <div class="fc-desc">{desc}</div>
                 <div class="fc-temps">
                     <span class="fc-high">{day['max_temp']:.0f}°</span>
                     <span class="fc-low">{day['min_temp']:.0f}°</span>
@@ -42,13 +44,16 @@ def _forecast_rows(forecast):
 
 def build_dashboard(weather, forecast):
     icon_url = _icon_url(weather["icon"])
+    city = _e(weather["city"])
+    country = _e(weather["country"])
+    description = _e(weather["description"])
 
-    html = f"""<!DOCTYPE html>
+    doc = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather — {weather['city']}</title>
+    <title>Weather — {city}</title>
     <style>
         body {{
             font-family: sans-serif;
@@ -134,9 +139,9 @@ def build_dashboard(weather, forecast):
 </head>
 <body>
     <div class="card">
-        <h1>{weather['city']}, {weather['country']}</h1>
-        <p class="subtitle">{weather['description']}</p>
-        <img class="main-icon" src="{icon_url}" alt="{weather['description']}" width="120" height="120">
+        <h1>{city}, {country}</h1>
+        <p class="subtitle">{description}</p>
+        <img class="main-icon" src="{icon_url}" alt="{description}" width="120" height="120">
         <div class="temp">{weather['temp']:.1f}°C</div>
         <div class="details">
             <div class="detail">
@@ -163,6 +168,6 @@ def build_dashboard(weather, forecast):
 </html>"""
 
     with open(OUTPUT_FILE, "w") as f:
-        f.write(html)
+        f.write(doc)
 
     print(f"Dashboard saved to {OUTPUT_FILE}")
