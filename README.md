@@ -4,6 +4,8 @@ Python script that fetches weather data from OpenWeatherMap and generates an HTM
 
 Built this as a personal project to practice working with APIs and get more comfortable with Python.
 
+**Live demo:** [jase989.github.io/python-weather-dashboard](https://jase989.github.io/python-weather-dashboard/) — static snapshot showing Dubai.
+
 ## Running it
 
 You'll need a free API key from [openweathermap.org](https://openweathermap.org/api). New keys take a couple of hours to activate.

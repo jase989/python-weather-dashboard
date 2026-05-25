@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather — Dubai</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 640px;
+            margin: 60px auto;
+            padding: 0 20px;
+            background: #f0f4f8;
+            color: #333;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+        h1 { margin: 0 0 4px; font-size: 2rem; }
+        .subtitle { color: #666; margin-bottom: 20px; }
+        .temp { font-size: 3.5rem; font-weight: bold; margin: 10px 0; }
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .detail {
+            background: #f0f4f8;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+        .detail label {
+            font-size: 0.75rem;
+            color: #888;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .detail span { font-size: 1.1rem; font-weight: 500; }
+
+        /* forecast strip at the bottom */
+        .forecast-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .forecast-card h2 {
+            margin: 0 0 16px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #888;
+        }
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+        .forecast-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .fc-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #555;
+        }
+        .fc-desc {
+            font-size: 0.68rem;
+            color: #888;
+            line-height: 1.2;
+        }
+        .fc-temps {
+            display: flex;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        .fc-high { font-weight: 600; }
+        .fc-low { color: #999; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Dubai, AE</h1>
+        <p class="subtitle">Clear sky</p>
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear sky">
+        <div class="temp">35.0°C</div>
+        <div class="details">
+            <div class="detail">
+                <label>Feels like</label>
+                <span>42.0°C</span>
+            </div>
+            <div class="detail">
+                <label>Humidity</label>
+                <span>55%</span>
+            </div>
+            <div class="detail">
+                <label>Wind speed</label>
+                <span>5.66 m/s</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="forecast-card">
+        <h2>5-day outlook</h2>
+        <div class="forecast-grid">
+            <div class="forecast-day">
+                <div class="fc-label">Mon 25 May</div>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear sky" width="40">
+                <div class="fc-desc">Clear sky</div>
+                <div class="fc-temps">
+                    <span class="fc-high">37°</span>
+                    <span class="fc-low">29°</span>
+                </div>
+            </div>
+            <div class="forecast-day">
+                <div class="fc-label">Tue 26 May</div>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear sky" width="40">
+                <div class="fc-desc">Clear sky</div>
+                <div class="fc-temps">
+                    <span class="fc-high">33°</span>
+                    <span class="fc-low">29°</span>
+                </div>
+            </div>
+            <div class="forecast-day">
+                <div class="fc-label">Wed 27 May</div>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear sky" width="40">
+                <div class="fc-desc">Clear sky</div>
+                <div class="fc-temps">
+                    <span class="fc-high">33°</span>
+                    <span class="fc-low">29°</span>
+                </div>
+            </div>
+            <div class="forecast-day">
+                <div class="fc-label">Thu 28 May</div>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear sky" width="40">
+                <div class="fc-desc">Clear sky</div>
+                <div class="fc-temps">
+                    <span class="fc-high">34°</span>
+                    <span class="fc-low">29°</span>
+                </div>
+            </div>
+            <div class="forecast-day">
+                <div class="fc-label">Fri 29 May</div>
+                <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Clear sky" width="40">
+                <div class="fc-desc">Clear sky</div>
+                <div class="fc-temps">
+                    <span class="fc-high">35°</span>
+                    <span class="fc-low">30°</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
